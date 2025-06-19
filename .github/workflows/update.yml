@@ -10,26 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # ✅ 关键配置：允许 rebase/pull
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
 
-    - name: Run update script
-      run: |
-        python update_sports_m3u.py
+      - name: Run update script
+        run: |
+          python update_sports_m3u.py
 
-    - name: Commit & Push
-      run: |
-        git config user.name "GitHub Action"
-        git config user.email "action@github.com"
-        git pull --rebase
-        git add sports_playlist.m3u
-        git commit -m "⏰ 自动更新体育直播源 $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes"
-        git push
+      - name: Commit & Push
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git pull --rebase
+          git add sports_playlist.m3u
+          git commit -m "⏰ 自动更新体育直播源 $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes"
+          git push
