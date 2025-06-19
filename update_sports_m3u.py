@@ -1,6 +1,6 @@
 import requests
 
-M3U_URL = "https://tv.iill.top/m3u/Gather"
+M3U_URL = "https://raw.githubusercontent.com/yang-1989/IPTV/main/migu/migu.m3u"
 KEYWORDS = ["咪咕", "腾讯", "CBA", "NBA", "英超", "网球", "体育"]
 OUTPUT_FILE = "sports_playlist.m3u"
 
