@@ -1,11 +1,11 @@
 import requests
 
-M3U_URL = "https://tv.iill.top/m3u/Gather"
-KEYWORDS = ["咪咕", "腾讯", "CBA", "NBA", "英超", "网球", "体育"]
+M3U_URL = "https://iptv-org.github.io/iptv/countries/cn.m3u"
+KEYWORDS = ["CCTV", "体育", "咪咕", "腾讯", "NBA", "CBA"]
 OUTPUT_FILE = "sports_playlist.m3u"
 
 def fetch_and_filter_m3u():
-    print(f"正在请求直播源：{M3U_URL}")
+    print(f"正在请求直播源: {M3U_URL}")
     res = requests.get(M3U_URL)
     res.encoding = 'utf-8'
 
@@ -22,7 +22,7 @@ def fetch_and_filter_m3u():
         f.write("#EXTM3U\n")
         f.write("\n".join(filtered_lines))
 
-    print(f"已生成 {OUTPUT_FILE}，共 {len(filtered_lines) // 2} 个频道")
+    print(f"✅ 已生成 {OUTPUT_FILE}, 共 {len(filtered_lines)//2} 个频道")
 
 if __name__ == "__main__":
     fetch_and_filter_m3u()
